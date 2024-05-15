@@ -1,0 +1,6 @@
+export { default as About} from './About'
+export { default as Colections} from './Colections'
+export { default as Contact} from './Contact'
+export { default as Man} from './Man'
+export { default as Wome } from './Wome'
+export { default as Home} from './Home'
