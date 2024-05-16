@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TiShoppingCart } from "react-icons/ti";
+import { BsCart3 } from "react-icons/bs";
 
 import hero1 from "../assets/images/image-product-1.jpg";
 import hero2 from "../assets/images/image-product-2.jpg";
@@ -23,7 +23,7 @@ const smImages = [smhero1, smhero2, smhero3, smhero4];
 const Hero = () => {
   const [img, setImg] = useState(images[1]);
   const [imgSm, setImgSm] = useState(smImages[1]);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   function setImage(e, index) {
     setImg(images[index]);
@@ -35,7 +35,7 @@ const Hero = () => {
   };
 
   const decrementFunc = () => {
-    if (count > 0) {
+    if (count > 1) {
       setCount(count - 1);
     }
   };
@@ -43,6 +43,7 @@ const Hero = () => {
   function handleSubmit(e) {
     localStorage.setItem("cart", JSON.stringify(cart));
     window.location.reload();
+    e.preventDefault()
   }
 
   const cart = {
@@ -123,7 +124,7 @@ const Hero = () => {
             className="flex items-center btn w-full sm:w-56 bg-orange-400"
           >
             <img src="./public/icon-cart.svg" alt="" />
-            <span className="text-white flex items-center gap-3"><TiShoppingCart className="w-5 h-5"/>Add to Cart</span>
+            <span className="text-white flex items-center gap-3"><BsCart3 className="w-5 h-5"/>Add to Cart</span>
           </button>
         </div>
       </div>
