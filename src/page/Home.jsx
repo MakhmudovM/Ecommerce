@@ -92,10 +92,10 @@ const Hero = () => {
       </div>
       <div className="w-full lg:w-96 md:w-3/4">
         <span className="text-warning text-xl font-medium">sneaker company</span>
-        <h1 className="font-bold text-4xl mt-7 mb-8 text-black">
+        <h1 className="font-bold text-4xl mt-7 mb-8 ">
           Fall Limited Edition Sneakers
         </h1>
-        <p className="text-sm text-slate-500 mb-6">
+        <p className="text-sm  mb-6">
           These low-profile sneakers are your perfect casual wear companion.
           Featuring a durable rubber outer sole, they'll withstand everything
           the weather can offer.
@@ -107,7 +107,7 @@ const Hero = () => {
               50%
             </span>
           </div>
-          <p className="line-through text-xl text-black mb-8">$250.00</p>
+          <p className="line-through text-xl mb-8">$250.00</p>
         </div>
         <div className="flex flex-col sm:flex-row sm:items-center sm:gap-4">
           <div className="flex items-center gap-10  sm:mb-0">
