@@ -1,89 +1,134 @@
-import hero1 from '../assets/images/image-product-1.jpg'
-import hero1min from '../assets/images/image-product-1-thumbnail.jpg'
-import hero2min from '../assets/images/image-product-2-thumbnail.jpg'
-import hero3min from '../assets/images/image-product-3-thumbnail.jpg'
-import hero4min from '../assets/images/image-product-4-thumbnail.jpg'
-import cart from '../assets/images/icon-cart.svg'
+import React, { useState } from "react";
+import { TiShoppingCart } from "react-icons/ti";
 
-import React, { useState } from 'react';
+import hero1 from "../assets/images/image-product-1.jpg";
+import hero2 from "../assets/images/image-product-2.jpg";
+import hero3 from "../assets/images/image-product-3.jpg";
+import hero4 from "../assets/images/image-product-4.jpg";
+import smhero1 from "../assets/images/image-product-1-thumbnail.jpg";
+import smhero2 from "../assets/images/image-product-2-thumbnail.jpg";
+import smhero3 from "../assets/images/image-product-3-thumbnail.jpg";
+import smhero4 from "../assets/images/image-product-4-thumbnail.jpg";
+
+import minus from "../assets/images/icon-minus.svg";
+import plus from "../assets/images/icon-plus.svg";
 
 
-function Home() {
-    const [count, setCount] = useState(0);
-    const [submittedCount, setSubmittedCount] = useState(null);
-  
-    const increment = () => {
-      setCount(count + 1);
-    };
-  
-    const decrement = () => {
+
+
+const images = [hero1, hero2, hero3, hero4];
+const smImages = [smhero1, smhero2, smhero3, smhero4];
+
+
+const Hero = () => {
+  const [img, setImg] = useState(images[1]);
+  const [imgSm, setImgSm] = useState(smImages[1]);
+  const [count, setCount] = useState(0);
+
+  function setImage(e, index) {
+    setImg(images[index]);
+    setImgSm(images[index]);
+  }
+
+  const incrementFunc = () => {
+    setCount(count + 1);
+  };
+
+  const decrementFunc = () => {
+    if (count > 0) {
       setCount(count - 1);
-    };
-  
-    const handleSubmit = () => {
-      setSubmittedCount(count);
-    };
+    }
+  };
+
+  function handleSubmit(e) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    window.location.reload();
+  }
+
+  const cart = {
+    image: imgSm,
+    price: 125.0,
+    title: "Fall Limited Edition Sneakers",
+    count: count,
+  };
+
   return (
-    <div className='pt-8 font-custom-font'>
-        <div className='flex justify-center items-center gap-32'>
-            <div className='w-[445px] h-[565px]'>
-               <div>
-                
-                {/* Open the modal using document.getElementById('ID').showModal() method */}
-<button className="" onClick={()=>document.getElementById('my_modal_2').showModal()}><img src={hero1} alt="snacers" className='w-[445px] h-[445px] rounded-2xl'/></button>
-<dialog id="my_modal_2" className="modal">
-  <div className="modal-box">
-  <img src={hero1} alt="snacers" className='w-[445px] h-[445px] rounded-2xl'/>
-  </div>
- 
-</dialog>
-               </div>
-               <div>
-                <ul className='flex gap-8 mt-8'>
-                    <li>
-                        <img className=' w-[88px] h-[88px] rounded-xl hover:opacity-15 active:opacity-30' src={hero1min} alt="" />
-                    </li>
-                    <li>
-                    <img className=' w-[88px] h-[88px] rounded-xl hover:opacity-15 active:opacity-30' src={hero2min} alt="" />
+    <div className="flex flex-col lg:flex-row lg:justify-center lg:gap-32 mt-20">
+      <div className="w-full lg:w-96 lg:h-96">
+        <button
+          onClick={() => document.getElementById("my_modal_3").showModal()}
+        >
+          <img className="rounded-lg mb-3 w-full" src={img} alt="" />
+        </button>
+        <dialog
+          id="my_modal_3"
+          className="modal bg-black bg-opacity-60 flex items-center justify-center"
+        >
+          <div className="modal-box border-none overflow-hidden bg-transparent rounded-lg lg:grid">
+            <form method="dialog flex">
+              
+            </form>
 
-                    </li>
-                    <li>
-                    <img className=' w-[88px] h-[88px] rounded-xl hover:opacity-15 active:opacity-30' src={hero3min} alt="" />
-
-                    </li>
-                    <li>
-                    <img className=' w-[88px] h-[88px] rounded-xl hover:opacity-15 active:opacity-30' src={hero4min} alt="" />
-
-                    </li>
-                </ul>
-               </div>
+            <div>
+              <img src={img} alt="" className="rounded-lg w-full" />
+              
+              
             </div>
-            <div className='w-[445px] h-[426px]'>
-                 {/*content */}
-                 <div>
-                    <h4 className='font-bold tracking-[4px]  text-xl text-orange-500 leading-5 mb-7'>Sneaker Company</h4>
-                    <h1 className='font-bold text-4xl leading-10 text-neutral-950 mb-8'>Fall Limited Edition Sneakers</h1>
-                    <p className='text-base leading-6 mb-6'>These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
-                </div>
-                {/*price */}
-                <div className='mb-8'>
-                    <span className='font-bold text-xl leading-8 text-neutral-950 mr-4'>$125.00</span> <span className=' bg-orange-100 text-orange-500 p-1 rounded px-3 '>50%</span>
-                    <br />
-                    <span className='line-through opacity-35 text-xl'>$250.00</span>
-                </div>
-                {/*buttons */}
-                <div className='flex gap-2'>
-                    <div className='mr-5'>
-                        <button className='btn text-orange-500' onClick={decrement}>-</button>
-                        <span className='mx-4'>{count}</span>
-                        <button className='btn text-orange-500' onClick={increment}>+</button>
-                    </div>
-                    <button className='btn bg-orange-500 text-white px-20' onSubmit={handleSubmit}><img src={cart} alt="" />add to cart</button>
-                </div>
-            </div>
+            
+          </div>
+        </dialog>
+        <div className=" lg:grid grid-cols-4 gap-8  sm:hidden md:hidden">
+          {smImages.map((smImage, index) => (
+            <img
+              className="rounded-lg cursor-pointer"
+              key={smImage}
+              onClick={(e) => setImage(e, index)}
+              src={smImage}
+              alt=""
+            />
+          ))}
         </div>
+      </div>
+      <div className="w-full lg:w-96 md:w-3/4">
+        <span className="text-warning text-xl font-medium">sneaker company</span>
+        <h1 className="font-bold text-4xl mt-7 mb-8 text-black">
+          Fall Limited Edition Sneakers
+        </h1>
+        <p className="text-neutral-content text-sm mb-6">
+          These low-profile sneakers are your perfect casual wear companion.
+          Featuring a durable rubber outer sole, they'll withstand everything
+          the weather can offer.
+        </p>
+        <div>
+          <div className="flex gap-6 items-start">
+            <span className="text-2xl font-medium mb-3">$125.00</span>
+            <span className="text-warning font-medium bg-orange-100 rounded py-1 px-3 mt-1">
+              50%
+            </span>
+          </div>
+          <p className="line-through text-black mb-8">$250.00</p>
+        </div>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:gap-4">
+          <div className="flex items-center gap-10  sm:mb-0">
+            <button className="">
+              <img src={minus} onClick={decrementFunc} alt="" />
+            </button>
+            <span>{count}</span>
+            <button onClick={incrementFunc}>
+              <img src={plus} alt="" />
+            </button>
+          </div>
+          <button
+            onClick={(e) => handleSubmit(e)}
+            className="flex items-center btn w-full sm:w-56 bg-orange-400"
+          >
+            <img src="./public/icon-cart.svg" alt="" />
+            <span className="text-white flex items-center gap-3"><TiShoppingCart className="w-5 h-5"/>Add to Cart</span>
+          </button>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Hero;
